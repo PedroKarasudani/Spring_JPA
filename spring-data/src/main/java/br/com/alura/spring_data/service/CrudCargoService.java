@@ -10,6 +10,8 @@ import br.com.alura.spring_data.repository.CargoRepository;
 @Service
 public class CrudCargoService {
 	
+	private boolean system = true;
+	
 	private final CargoRepository cargoRepository;
 	
 	public CrudCargoService(CargoRepository cargoRepository) {
@@ -17,7 +19,26 @@ public class CrudCargoService {
 	}
 	
 	public void inicia(Scanner scanner) {
-		salvar(scanner);
+		while (system) {
+			System.out.println("Qual acao voce quer executar");
+			System.out.println("1 - Salvar");
+			System.out.println("2 - Atualizar");
+			System.out.println("0 - Sair");
+			
+			int action = scanner.nextInt();
+			
+			switch (action) {
+			case 1:
+				salvar(scanner);
+				break;
+			case 2:
+				atualizar(scanner);
+				break;
+			default:
+				system = false;
+				break;
+			}
+		}
 	}
 	
 	public void salvar(Scanner scanner) {
@@ -27,6 +48,18 @@ public class CrudCargoService {
 		cargo.setDescricao(nomeCargo);
 		cargoRepository.save(cargo);
 		System.out.println("Salvo!");
+	}
+	
+	public void atualizar(Scanner scanner) {
+		System.out.print("Id: ");
+		Integer id = scanner.nextInt();
+		System.out.print("Qual nome do cargo: ");
+		String nome = scanner.next();
+		Cargo cargo = new Cargo();
+		cargo.setId(id);
+		cargo.setDescricao(nome);
+		cargoRepository.save(cargo);
+		System.out.println("Atualizado!");
 	}
 	
 }
