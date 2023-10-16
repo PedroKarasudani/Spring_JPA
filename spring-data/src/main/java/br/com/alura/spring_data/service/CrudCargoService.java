@@ -24,6 +24,7 @@ public class CrudCargoService {
 			System.out.println("1 - Salvar");
 			System.out.println("2 - Atualizar");
 			System.out.println("3 - Vizualizar");
+			System.out.println("4 - Deletar");
 			System.out.println("0 - Sair");
 			
 			
@@ -38,6 +39,9 @@ public class CrudCargoService {
 				break;
 			case 3:
 				visualizar();
+				break;
+			case 4:
+				deletar(scanner);
 				break;
 			default:
 				system = false;
@@ -70,6 +74,13 @@ public class CrudCargoService {
 	public void visualizar() {
 		Iterable<Cargo> cargos = cargoRepository.findAll();
 		cargos.forEach(cargo -> System.out.println(cargo));		
+	}
+	
+	public void deletar(Scanner scanner) {
+		System.out.print("Id: ");
+		Integer id = scanner.nextInt();
+		cargoRepository.deleteById(id);
+		System.out.println("Deletado!");
 	}
 
 }
