@@ -28,4 +28,10 @@ public class Cargo {
 	}
 	
 	
+	
+	@Override
+	public String toString() {
+		return "Cargo [id=" + id + ", descricao=" + descricao + "]";
+	}
+	
 }

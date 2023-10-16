@@ -23,7 +23,9 @@ public class CrudCargoService {
 			System.out.println("Qual acao voce quer executar");
 			System.out.println("1 - Salvar");
 			System.out.println("2 - Atualizar");
+			System.out.println("3 - Vizualizar");
 			System.out.println("0 - Sair");
+			
 			
 			int action = scanner.nextInt();
 			
@@ -33,6 +35,9 @@ public class CrudCargoService {
 				break;
 			case 2:
 				atualizar(scanner);
+				break;
+			case 3:
+				visualizar();
 				break;
 			default:
 				system = false;
@@ -62,4 +67,9 @@ public class CrudCargoService {
 		System.out.println("Atualizado!");
 	}
 	
+	public void visualizar() {
+		Iterable<Cargo> cargos = cargoRepository.findAll();
+		cargos.forEach(cargo -> System.out.println(cargo));		
+	}
+
 }
