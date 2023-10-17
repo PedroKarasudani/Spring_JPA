@@ -46,7 +46,7 @@ public class SpringDataApplication implements CommandLineRunner {
 				cargoService.inicia(scanner);
 			}if(action == 2) {
 				funcionarioService.inicia(scanner);
-			}if(action == 2) {
+			}if(action == 3) {
 				unidadeTrabalhoService.inicia(scanner);
 			} else {
 				system = false;
