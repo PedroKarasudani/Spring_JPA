@@ -1,13 +1,21 @@
 package br.com.alura.spring_data.orm;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity 
 @Table(name = "funcionarios")
@@ -16,11 +24,17 @@ public class Funcionario {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
 	private String nome;
 	private String cpf;
-	private BigDecimal salario;
+	private Double salario;
 	private LocalDate dataContratacao;
+	@ManyToOne
+	@JoinColumn(name = "cargo_id", nullable = false)
+	private Cargo cargo;
+	@Fetch(FetchMode.SELECT)
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "funcionarios_unidades", joinColumns = {@JoinColumn(name = "fk_funcionario")})
+	private List<UnidadeTrabalho> unidadeTrabalhos;
 	
 	
 	public Integer getId() {
@@ -41,10 +55,10 @@ public class Funcionario {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public BigDecimal getSalario() {
+	public Double getSalario() {
 		return salario;
 	}
-	public void setSalario(BigDecimal salario) {
+	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
 	public LocalDate getDataContratacao() {
