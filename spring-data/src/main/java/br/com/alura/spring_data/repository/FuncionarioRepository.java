@@ -1,11 +1,13 @@
 package br.com.alura.spring_data.repository;
 
-import org.springframework.stereotype.Repository;
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import br.com.alura.spring_data.orm.Funcionario;
 
 @Repository
 public interface FuncionarioRepository extends CrudRepository <Funcionario, Integer>{
-	
+	List<Funcionario> findByNome(String nome);
 }
