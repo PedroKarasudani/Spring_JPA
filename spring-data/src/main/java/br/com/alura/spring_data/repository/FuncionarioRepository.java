@@ -17,6 +17,6 @@ public interface FuncionarioRepository extends CrudRepository <Funcionario, Inte
 	List<Funcionario> findByNomeAndSalarioGreaterThanAndDataContratacao(String nome, Double salario, LocalDate data);
 	
 	//ultilizando JPQL fica assim
-	@Query("SELECT f FROM Funcionario f WHERE f.nome = :nomeZ AND f.salario >= :salarioZ AND f.dataContratacao = :dataZ")
-	List<Funcionario> findNomeSalarioMaiorDataContratacao(String nomeZ, Double salarioZ, LocalDate dataZ);
+	@Query("SELECT f FROM Funcionario f WHERE f.nome = :nome AND f.salario >= :salario AND f.dataContratacao = :data")
+	List<Funcionario> findNomeSalarioMaiorDataContratacao(String nome, Double salario, LocalDate data);
 }
