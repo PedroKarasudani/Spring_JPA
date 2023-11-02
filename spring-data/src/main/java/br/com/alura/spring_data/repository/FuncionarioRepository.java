@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import br.com.alura.spring_data.orm.Funcionario;
-import br.com.alura.spring_data.orm.FuncionarioDto;
+import br.com.alura.spring_data.orm.FuncionarioProjecao;
 
 @Repository
 public interface FuncionarioRepository extends PagingAndSortingRepository<Funcionario, Integer> {
@@ -27,5 +27,5 @@ public interface FuncionarioRepository extends PagingAndSortingRepository<Funcio
 	List<Funcionario> findDataContratacaoMaior(@Param("data") LocalDate data);
 	
 	@Query(value = "SELECT f.id, f.nome, f.salario FROM funcionarios f", nativeQuery = true)
-	List<FuncionarioDto> findFuncionarioSalario();
+	List<FuncionarioProjecao> findFuncionarioSalario();
 }
