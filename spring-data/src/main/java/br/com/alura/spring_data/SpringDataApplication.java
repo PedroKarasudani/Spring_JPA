@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.com.alura.spring_data.service.CrudCargoService;
 import br.com.alura.spring_data.service.CrudFuncionarioService;
 import br.com.alura.spring_data.service.CrudUnidadeTrabalhoService;
+import br.com.alura.spring_data.service.RelatorioFuncionarioDinamico;
 import br.com.alura.spring_data.service.RelatoriosService;
 
 @SpringBootApplication
@@ -20,12 +21,14 @@ public class SpringDataApplication implements CommandLineRunner {
 	private final CrudFuncionarioService funcionarioService;
 	private final CrudUnidadeTrabalhoService unidadeTrabalhoService;
 	private final RelatoriosService relatoriosService;
+	private final RelatorioFuncionarioDinamico relatorioFuncionarioDinamico;
 	
-	public SpringDataApplication(CrudCargoService cargoService, CrudFuncionarioService funcionarioService, CrudUnidadeTrabalhoService unidadeTrabalhoService, RelatoriosService relatoriosService) {
+	public SpringDataApplication(CrudCargoService cargoService, CrudFuncionarioService funcionarioService, CrudUnidadeTrabalhoService unidadeTrabalhoService, RelatoriosService relatoriosService, RelatorioFuncionarioDinamico relatorioFuncionarioDinamico) {
 		this.cargoService = cargoService;
 		this.funcionarioService = funcionarioService;
 		this.unidadeTrabalhoService = unidadeTrabalhoService;
 		this.relatoriosService = relatoriosService;
+		this.relatorioFuncionarioDinamico = relatorioFuncionarioDinamico;
 	}
 
 	public static void main(String[] args) {
@@ -42,6 +45,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("2 - Funcionario");
 			System.out.println("3 - Unidade Trabalho");
 			System.out.println("4 - Relatorios");
+			System.out.println("5 - Relatorios Dinamico");
 			System.out.println("0 - Sair");
 			
 			int action = scanner.nextInt();
@@ -58,6 +62,9 @@ public class SpringDataApplication implements CommandLineRunner {
 				break;
 			case 4:
 				relatoriosService.inicia(scanner);
+				break;
+			case 5:
+				relatorioFuncionarioDinamico.inicial(scanner);
 				break;
 			default:
 				break;

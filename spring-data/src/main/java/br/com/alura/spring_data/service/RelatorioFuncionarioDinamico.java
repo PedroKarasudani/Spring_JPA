@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
 
 import br.com.alura.spring_data.orm.Funcionario;
 import br.com.alura.spring_data.repository.FuncionarioRepository;
 import br.com.alura.spring_data.specification.SpecificationFuncionario;
 
+@Service
 public class RelatorioFuncionarioDinamico {
 	private final FuncionarioRepository funcionarioRepository;
 	
